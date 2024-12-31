@@ -7,7 +7,6 @@ import { Component} from '@angular/core';
 })
 export class SocialMediaContentComponent {
   ngOnInit(){
-    console.log("render the components");
    const cards = document.querySelectorAll('.social-media-card');
    const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
