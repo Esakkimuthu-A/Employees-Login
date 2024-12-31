@@ -33,6 +33,8 @@ export class RegisterFormComponent {
   employeeMarital:any;
   employeeGender :any;
   hoverIndex=0;
+  uploadImage: any;
+  uploadOnlyImage: any;
   documentData !:any[];
 
   ngOnInit() {
@@ -42,7 +44,6 @@ export class RegisterFormComponent {
     if (sessionStorage.getItem('userId')) {
       this.LoginUserNotShow = false;
     }
-    this.selectedTemplate=this.templateCategory[this.hoverIndex]?.template;
   }
 
   TemplateDetails(){
@@ -52,7 +53,8 @@ export class RegisterFormComponent {
     ]
     this.EmployeService.errorMessage.subscribe((res:any) =>{
       this.errorMessage =res;
-    })
+    });
+    this.selectedTemplate=this.templateCategory[this.hoverIndex]?.template;
   }
 
   /**
@@ -211,6 +213,7 @@ export class RegisterFormComponent {
     }
     else {
       if (this.employeeform.valid) {
+        console.log("employeeform",this.employeeform);
         this.EmployeService.CreateEmployee(this.employeeform.value).subscribe((res: any) => {
           if (res) {
             this.employeeform.reset();
@@ -233,15 +236,23 @@ export class RegisterFormComponent {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
 
-  url = './assets/person2.png'
-  addProfilePhoto(e: any) {
-    if (e.target.files) {
-      var reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = (event: any) => {
-        this.employeeform.get('addImage')?.setValue(event.target.result);
-      }
-    }
+  addProfilePhoto(event: any) {
+    if(!event.target.files[0] || event.target.files[0].length == 0) {
+			this.uploadOnlyImage = 'You must select an image';
+			return;
+		}
+    var mimeType = event.target.files[0].type;
+		if (mimeType.match(/image\/*/) == null) {
+			this.uploadOnlyImage = "Only images are supported";
+			return;
+		}
+    var reader = new FileReader();
+		reader.readAsDataURL(event.target.files[0]);
+		reader.onload = (_event) => {
+			this.uploadOnlyImage = "";
+			this.uploadImage = reader.result; 
+      this.employeeform.get('addImage')?.setValue(reader.result);
+		}
   }
 
   onChange() {

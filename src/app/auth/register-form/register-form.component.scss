@@ -19,8 +19,8 @@
 }
 
 .selected-button-color{
-  color: white;
-  background-color: var(--color-primary);
+  color: white !important;
+  background-color: var(--color-primary) !important;
 }
 
 mat-card{
@@ -58,6 +58,25 @@ mat-card{
   cursor: pointer;
   padding-top: 15px;
   margin: 8px 0px;
+}
+
+.image-content{
+  height: 100px;
+  width: 100px;
+  border: 2px solid #656565;
+  border-radius: 10px;
+}
+
+.image-content img{
+  height: 100px;
+  width: 100px;
+  border-radius: 7px;
+  object-fit: cover;
+}
+
+.upload-only-image p{
+  font-size: 17px;
+  color: red;
 }
 
 .user-photo-input{

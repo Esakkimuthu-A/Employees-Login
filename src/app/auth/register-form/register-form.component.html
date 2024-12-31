@@ -205,13 +205,18 @@
         </mat-form-field>
       </div>
     </div>
-    <!-- <p>Upload Your Image:</p>
-       -->
+    <!-- <p>Upload Your Image:</p> -->
     <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="5%" fxLayoutGap.lt-md="20px" *ngIf="LoginUserNotShow">
       <div fxFlex="50%" fxLayoutGap.lt-md="2%">
         <mat-label class="label" fxFlex="40%">Image:</mat-label>
         <div class="add-image" fxFlex="60%">
-          <input type="file" #fileUpload class="user-photo-input" (change)="addProfilePhoto($event)">
+          <div *ngIf="uploadOnlyImage" class="upload-only-image">
+            <p>{{uploadOnlyImage}}</p>
+          </div>
+          <div *ngIf="uploadImage" class="image-content">
+            <img [src]="uploadImage" alt="user-image">
+          </div>
+          <input *ngIf="!uploadImage" type="file" #fileUpload class="user-photo-input" (change)="addProfilePhoto($event)">
         </div>
       </div>
     </div>
