@@ -1,0 +1,64 @@
+.main {
+  background-color: var(--color-primary);
+  height: 450px;
+  width: 400px;
+  border: 3px solid  var(--color-primary);
+  border-radius: 20px;
+  position: relative;
+}
+
+.main .clip-bath {
+  background-color: white;
+  clip-path: circle(225px at 80px 180px);
+  height: 450px;
+  border-radius: 20px;
+}
+
+.input-field {
+  position: absolute;
+  top: 18%;
+  left: 0%;
+  height: 230px;
+  width: 265px;
+  padding: 10px;
+}
+
+.btn button {
+  width: 125px;
+  border-radius: 20px;
+  font-size: 15px;
+  color: white;
+  background-color:  var(--color-primary);
+}
+
+.mat-mdc-form-field-focus-overlay {
+  background-color: white;
+}
+
+.forget {
+  text-align: end;
+  cursor: pointer;
+}
+
+.forget a {
+  text-decoration: none;
+  color:  var(--color-primary);
+}
+
+.register {
+  padding: 25px 5px;
+}
+
+.register a {
+  color:  var(--color-primary);
+  text-decoration: none;
+  font-size: 16px;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: white;
+}
+.error-message p{
+  color: #f44336;
+  font-size: 16px;
+  padding: 0px 10px;
+}

@@ -1,0 +1,164 @@
+body{
+  scroll-behavior: smooth;
+}
+
+.grow-card-content{
+  gap: 55px 20px;
+  flex-wrap: wrap;
+}
+
+.grow-card1{
+  min-height: 150px;
+  width: 350px;
+  margin: 10px;
+  background-color: #FEF6FF;
+  border: 2px solid #FBD7FF;
+  border-radius: 25px;
+  position: relative;
+}
+
+.card1-content{
+  background-color: #FBD7FF; 
+  position: absolute; 
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 15px;
+}
+
+.card1-content mat-icon{
+  color: #e700ff;
+  height: 75px;
+  width: 75px;
+  font-size: 30px;
+}
+
+.card-count{
+  font-size: 25px;
+  color: #252E48;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-family: 'Montserrat', 'Montserrat-fallback', sans-serif !important;
+}
+
+.card-desc{
+  font-size: 15px;
+  font-weight: 500;
+  color: #545F7E;
+  line-height: 1.5;
+  font-family: 'Montserrat', 'Montserrat-fallback', sans-serif !important;
+}
+
+.grow-card2{
+  min-height: 150px;
+  width: 350px;
+  margin: 10px;
+  background-color: #FFFDF5;
+  border: 2px solid #FFEA9E;
+  border-radius: 25px;
+  position: relative;
+}
+
+.card2-content{
+  background-color: #FFEA9E; 
+  position: absolute; 
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 15px;
+}
+
+.card2-content mat-icon{
+  color: #ffc800;
+  height:75px;
+  width: 75px;
+  font-size: 30px;
+}
+
+.grow-card3{
+  min-height: 150px;
+  width: 350px;
+  margin: 10px;
+  background-color: #F0FBFF;
+  border: 2px solid #C6EFFF;
+  border-radius: 25px;
+  position: relative;
+}
+
+.card3-content{
+  background-color: #C6EFFF;
+  position: absolute; 
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 15px;
+}
+
+.card3-content mat-icon{
+  color: #00b7ff;
+  height: 75px;
+  width: 75px;
+  font-size: 30px;
+}
+
+
+.card-icon-animation mat-icon {
+  animation: zoominoutsinglefeatured 1.5s infinite;
+}
+
+@keyframes zoominoutsinglefeatured {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.create-account-content{
+  position: fixed;
+  bottom: 10px;
+  transform: translateY(115%);
+  z-index: 999;
+  width: 100%;
+  transition: all .2s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+.show-scroll {
+  transform: translateX(0%);
+  transition: all .2s ease-in-out;
+}
+
+.back-icon {
+  color: black;
+  font-size: x-large;
+}
+
+.create-account{
+  margin: 20px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  background-color: #A1EBFF;
+}
+
+.create-account p{
+  color: black;
+  font-weight: 500;
+  margin: 0px;
+}
+
+.create-account-add{
+  font-size: 25px;
+}
+
+.create-account-text{
+  font-size: 18px;
+}

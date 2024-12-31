@@ -1,0 +1,40 @@
+<app-loader *ngIf="loader"></app-loader>
+
+<div fxLayoutAlign="center center" style="height:100%;">
+  <div class="main">
+    <div class="clip-bath">
+    </div>
+    <form [formGroup]="loginForm" class="input-field" fxLayout="column">
+      <div *ngIf="loginForm?.get('email')?.errors?.['invalidError']"  class="error-message">
+        <p>Invalid Email and Password !!!</p>
+      </div>
+      <div fxFlex="50%">
+        <mat-form-field Appearance="standard" fxFlex="100%">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-error *ngIf="loginForm?.get('email')?.hasError('required')">
+              This field is required!!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50%">
+        <mat-form-field Appearance="standard" fxFlex="100%">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password">
+          <mat-error *ngIf="loginForm?.get('password')?.hasError('required')">
+            This field is required!!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="forget" routerLink="/forgetPassowrd">
+        <a>Forget Password?</a>
+      </div>
+      <div class="btn">
+        <button mat-raised-button (click)="Login()">Submit</button>
+      </div>
+      <div class="register">
+        <a routerLink="/registerForm">Click Register Now</a>
+      </div>
+    </form>
+  </div>
+</div>     

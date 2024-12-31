@@ -1,0 +1,11 @@
+<div fxLayout="row">
+  <div fxFlex="32px" fxLayoutAlign="start center">
+    <mat-icon>{{data.content}}</mat-icon>
+  </div>
+  <div fxFlex fxLayoutAlign="start center">
+    <div style="color: white ; font-size: 15px; font-weight: 400;">{{data.header}}</div>
+  </div>
+  <div fxFlex="50px" fxLayoutAlign="end end">
+    <mat-icon (click)="Close()">clear</mat-icon>
+  </div> 
+</div>

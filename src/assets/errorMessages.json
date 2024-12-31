@@ -1,0 +1,16 @@
+{
+  "FIELD_REQUIRED":"This field is required",
+  "NOT_VALID":"Not valid",
+  "DATE_NOT_VALID":"Date not valid",
+  "CHARACTER_MIN_LENGHT":"Character minimum lenth 3!",
+  "CHARACTER_MAX_LENGHT":"Character maximum lenght 6!",
+  "ERROR":"Error",
+  "SUBMITTED":"Data Submitted Successfully",
+  "INPUT_FIELD_ERROR":"All Input Field Required!!!",
+  "DELETED":"Data Deleted Successfully!!!",
+  "WARNING":"Warning!!!",
+  "CAREFULLY":"Data Information carefully !!!",
+  "DEFALUTE":"Defalute !!!",
+  "DATA_UPDATED":"Data updated Successfully",
+  "ALREADY_EXITS":"This Email Already exist"
+}

@@ -1,0 +1,169 @@
+::ng-deep .mat-drawer-conten{
+  display: contents !important;
+}
+
+
+// navbar
+
+.navbar{
+  height: 65px;
+  background-color: #ababab;
+}
+
+.navbar-icon{
+  margin: 25px;
+}
+
+//Profile Info
+
+.user-profile-header p {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.profile-image {
+  height: 260px;
+  width: 100%;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  border-radius: 10px;
+}
+
+.profile-image img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.profile-image img:hover{
+  cursor: pointer;
+}
+
+.user-details-content{
+ text-align: center;
+ margin-top: 10px;
+}
+
+.user-name{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.user-gender p{
+  font-size: 13px;
+  color: #6b6262;
+}
+
+.user-email{
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.user-logout {
+  font-size: 16px;
+  width: 100%;
+}
+
+.forget-password{
+  margin: 0px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  color:var(--textColor);
+}
+
+.user-logout button {
+  border: none;
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.user-logout button p {
+  font-size: 17px;
+}
+
+.user-logout button:hover {
+  cursor: pointer;
+}
+
+//User image upload Dialog
+
+.dialog-heading {
+  height: 60px;
+  width: 100%;
+  background-color: #f5f4f4;
+  border-bottom: 1px solid #e5d4d4;
+}
+
+.dialog-heading p {
+  font-size: 19px;
+  margin: 0px 10px;
+}
+
+.dialog-user-image {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-size: cover;
+  padding: 20px;
+}
+
+.dialog-user-upload-image{
+  display: none;
+}
+
+.dialog-button{
+  padding: 10px;
+}
+
+.menu-content{
+  height: 60px;
+  width: 100%;
+  padding: 0px 10px;
+}
+ 
+.menu-content-click{
+  background-color: #e3e3e3;
+  border-left-width: 4px;
+  border-left-color: #9c9c9c;
+  border-left-style: solid;
+  transition: all .2s ease-in-out;
+}
+
+.menu-content-click .menu-icon{
+  color: black;
+}
+
+.menu-content-click .menu-title{
+  color: black;
+}
+
+.menu-content-without-click{
+  background-color: white;
+  transition: all .2s ease-in-out;
+}
+
+.menu-icon{
+  font-size: 25px;
+  color: rgb(134, 134, 138);
+}
+
+.menu-title {
+  font-size: 17px;
+  margin: 0px;
+  color: rgb(134, 134, 138);
+}
+
+.mat-sidenav-content-data{
+  display: contents;
+}
+
+.mat-sidenav-content-checking{
+  overflow-y: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+

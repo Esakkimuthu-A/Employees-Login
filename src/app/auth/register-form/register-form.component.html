@@ -1,0 +1,310 @@
+<div fxLayoutAlign="center center">
+  <div fxFlex="95%" class="form-container">
+    <div *ngIf="!UserDetailes" fxLayoutAlign="end end" class="back-button">
+      <button  mat-raised-button color="primary" routerLink="/login">Back</button>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px" *ngIf="UserDetailes">
+      <div fxLayout="row">
+        <h1>{{UserDetailes?.firstName}}</h1>
+        <h1>{{UserDetailes?.lastName}}</h1>
+      </div>
+      <div class="active-user" fxLayoutAlign="center center">
+        <p>Active</p>
+      </div>
+    </div>
+    <mat-card>
+      <div fxLayout="row wrap" fxLayoutGap="5px">
+        <div *ngFor="let item of templateCategory;let i=index" (click)="userInforClick(i)">
+          <button mat-raised-button [ngClass]="{'selected-button-color' : i === hoverIndex}" style="margin: 5px;">{{item?.name}}</button>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card class="mat-card-user-details">
+      <ng-container [ngTemplateOutlet]="selectedTemplate">
+      </ng-container>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #GENERAL>
+  <form [formGroup]="employeeform" class="form-field-outer" *ngIf="employeeform" fxLayout="column" fxFlex="100%" fxLayoutGap.lt-md="2%">
+    <!-- Name -->
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="5%" fxLayoutGap.lt-md="20px">
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">First Name:</mat-label>
+        <mat-form-field fxFlex="60%" appearance="outline">
+          <div fxLayout="row">
+            <input matInput formControlName="firstName">
+            <mat-icon fxHide.lt-md>perm_identity</mat-icon>
+          </div>
+          <mat-error *ngIf="employeeform?.get('firstName')?.hasError('required')">
+           {{errorMessage?.FIELD_REQUIRED}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">Last Name:</mat-label>
+        <mat-form-field fxFlex="60%" appearance="outline">
+          <div fxLayout="row">
+            <input matInput formControlName="lastName">
+            <mat-icon fxHide.lt-md>perm_identity</mat-icon>
+          </div>
+          <mat-error *ngIf="employeeform?.get('lastName')?.hasError('required')">
+            {{errorMessage?.FIELD_REQUIRED}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- Email -->
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="5%" fxLayoutGap.lt-md="20px">
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">Email:</mat-label>
+        <mat-form-field fxFlex="60%" appearance="outline">
+          <div fxLayout="row">
+            <input matInput formControlName="email">
+            <mat-icon fxHide.lt-md>mail_outline</mat-icon>
+          </div>
+          <mat-error *ngIf="employeeform?.get('email')?.hasError('required')">
+            This field is required!!!
+          </mat-error>
+          <mat-error *ngIf="employeeform?.get('email')?.hasError('pattern')">
+            This email not valid!!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">Alternate Email:</mat-label>
+        <mat-form-field fxFlex="60%" appearance="outline">
+          <div fxLayout="row">
+            <input matInput formControlName="alternateEmail">
+            <mat-icon fxHide.lt-md>mail_outline</mat-icon>
+          </div>
+          <mat-error *ngIf="employeeform?.get('alternateEmail')?.hasError('required')">
+            This field is required!!!
+          </mat-error>
+          <mat-error *ngIf="employeeform?.get('alternateEmail')?.hasError('pattern')">
+            This email not valid!!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- Dates -->
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="5%" fxLayoutGap.lt-md="20px">
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">Date Of Birth:</mat-label>
+        <mat-form-field fxFlex="60%" appearance="outline">
+          <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="employeeform?.get('dateOfBirth')?.hasError('required')">
+            This field is required!!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">Date Of Joining:</mat-label>
+        <mat-form-field fxFlex="60%" appearance="outline">
+          <input matInput [matDatepicker]="picker1" formControlName="dateOfJoining">
+          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+          <mat-error *ngIf="employeeform?.get('dateOfJoining')?.hasError('required')">
+            This field is required!!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- Gender and Marital-status -->
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="5%" fxLayoutGap.lt-md="20px">
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">Gender:</mat-label>
+        <mat-form-field fxFlex="60%" appearance="outline">
+          <mat-select formControlName="genderId">
+            <mat-option [value]="item?.id" *ngFor="let item of employeeGender">
+              {{item?.gender}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="employeeform?.get('dateOfBirth')?.hasError('required')">
+            This field is required!!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">Marital Status:</mat-label>
+        <mat-form-field fxFlex="60%" appearance="outline">
+          <mat-select formControlName="maritalstatusId">
+            <mat-option [value]="item?.id" *ngFor="let item of employeeMarital">
+              {{item?.status}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="employeeform?.get('dateOfBirth')?.hasError('required')">
+            This field is required!!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  
+    <!-- Department & Role -->
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="5%" fxLayoutGap.lt-md="20px">
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">Department:</mat-label>
+        <mat-form-field fxFlex="60%" appearance="outline">
+          <mat-select formControlName="departmentId">
+            <mat-option [value]="item?.id" *ngFor="let item of employeeDepartment">
+              {{item?.department}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="employeeform?.get('dateOfBirth')?.hasError('required')">
+            This field is required!!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">Role:</mat-label>
+        <mat-form-field fxFlex="60%" appearance="outline">
+          <mat-select formControlName="roleId">
+            <mat-option [value]="item?.id" *ngFor="let item of employeeRole">
+              {{item?.role}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="employeeform?.get('dateOfJoining')?.hasError('required')">
+            This field is required!!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- Password -->
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="5%" fxLayoutGap.lt-md="20px" *ngIf="LoginUserNotShow">
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">Password:</mat-label>
+        <mat-form-field fxFlex="60%" appearance="outline">
+          <div fxLayout="row">
+            <input matInput formControlName="password" [type]="showPassword ? 'text' : 'password'">
+            <mat-icon fxHide.lt-md class="view" (click)="showPasswordFieldText()">{{showPassword ? 'visibility_off' :
+              'visibility'}}</mat-icon>
+          </div>
+          <mat-error *ngIf="employeeform?.get('password')?.hasError('required')">
+            This field is required!!!
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">Confirm Password:</mat-label>
+        <mat-form-field fxFlex="60%" appearance="outline">
+          <div fxLayout="row">
+            <input matInput formControlName="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'"
+              (change)="onChange()">
+            <mat-icon fxHide.lt-md class="password-visibility" (click)="showConfirmPasswordText()">{{showConfirmPassword ?
+              'visibility_off' : 'visibility'}} </mat-icon>
+          </div>
+          <mat-error *ngIf="employeeform?.get('confirmPassword')?.hasError('required')">
+            This field is required!!!
+          </mat-error>
+          <mat-error *ngIf="employeeform?.get('confirmPassword')?.errors?.['passwordMismatch']">
+            This ConfirmPassword Not Match
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- <p>Upload Your Image:</p>
+       -->
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="5%" fxLayoutGap.lt-md="20px" *ngIf="LoginUserNotShow">
+      <div fxFlex="50%" fxLayoutGap.lt-md="2%">
+        <mat-label class="label" fxFlex="40%">Image:</mat-label>
+        <div class="add-image" fxFlex="60%">
+          <input type="file" #fileUpload class="user-photo-input" (change)="addProfilePhoto($event)">
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>  
+
+<ng-template #CONTACT>
+  <form [formGroup]="employeeform" class="formfieldOuter" *ngIf="employeeform" fxLayout="column" fxFlex="100%" fxLayoutGap.lt-md="2%">
+    <div *ngIf="employeeform && employeeform?.get('contact')">
+      <div formArrayName="contact">
+        <div *ngFor="let item of create();let i=index">
+          <div [formGroupName]="i">
+            <div fxLayout="row" fxLayoutAlign="end center" style="padding: 10px;" *ngIf="LoginUserNotShow">
+              <mat-icon (click)="createArray()" class="form-array-icon">add_circle</mat-icon>
+              <mat-icon (click)="removeItem(i)" class="form-array-icon"
+                *ngIf="i !== 0">remove_circle_outline</mat-icon>
+            </div>
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="5%" fxLayoutGap.lt-md="20px">
+                <div fxFlex="50%">
+                  <mat-label class="label" fxFlex="40%">Address</mat-label>
+                  <mat-form-field fxFlex="60%" appearance="outline">
+                    <input matInput formControlName="address">
+                    <mat-error *ngIf="getContacts.controls[i].get('address')?.hasError('required')">
+                      This field is required!!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="50%">
+                  <mat-label class="label" fxFlex="40%">City</mat-label>
+                  <mat-form-field fxFlex="60%" appearance="outline">
+                    <input matInput formControlName="city">
+                    <mat-error *ngIf="getContacts.controls[i].get('city')?.hasError('required')">
+                      This field is required!!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="5%" fxLayoutGap.lt-md="20px">
+                <div fxFlex="50%">
+                  <mat-label class="label" fxFlex="40%">District</mat-label>
+                  <mat-form-field fxFlex="60%" appearance="outline">
+                    <input matInput formControlName="district">
+                    <mat-error *ngIf="getContacts.controls[i].get('district')?.hasError('required')">
+                      This field is required!!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="50%">
+                  <mat-label class="label" fxFlex="40%">State</mat-label>
+                  <mat-form-field fxFlex="60%" appearance="outline">
+                    <input matInput formControlName="state">
+                    <mat-error *ngIf="getContacts.controls[i].get('state')?.hasError('required')">
+                      This field is required!!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="5%" fxLayoutGap.lt-md="20px">
+                <div fxFlex="50%">
+                  <mat-label class="label" fxFlex="40%">Country</mat-label>
+                  <mat-form-field fxFlex="60%" appearance="outline">
+                    <input matInput formControlName="country">
+                    <mat-error *ngIf="getContacts.controls[i].get('country')?.hasError('required')">
+                      This field is required!!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="50%">
+                  <mat-label class="label" fxFlex="40%">Pincode</mat-label>
+                  <mat-form-field fxFlex="60%" appearance="outline">
+                    <input matInput formControlName="pincode">
+                    <mat-error *ngIf="getContacts.controls[i].get('pincode')?.hasError('required')">
+                      This field is required!!!
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div fxLayoutAlign="center center" fxLayoutAlign.lt-md="start center">
+      <div fxLayout="row" fxLayoutGap="5%">
+        <button mat-raised-button color="warn" [disabled]="!LoginUserNotShow && !buttonShow"
+          (click)="OnReset()">{{buttonShow ? 'Cancel':'Reset'}}</button>
+        <button mat-raised-button color="primary" [disabled]="!LoginUserNotShow && !buttonShow"
+          (click)="OnSubmit()">{{buttonShow ? 'Edit':'Submit'}}</button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+

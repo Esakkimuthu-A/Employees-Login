@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from './shared/services/employee.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'my-app2023';
+export class AppComponent implements OnInit {
+  constructor(private EmployeeService : EmployeeService){
+  }
+  
+  ngOnInit(): void {
+      this.EmployeeService.getErrorMessages();
+  }
 }

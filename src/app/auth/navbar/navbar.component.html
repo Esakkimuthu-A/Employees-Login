@@ -1,0 +1,95 @@
+<div fxLayoutAlign="center center" >
+  <div fxFlex="100%" >
+    <div class="navbar" fxLayoutAlign="space-between center">
+      <div class="navbar-icon" >
+        <button mat-icon-button matTooltip="Menu bar" (click)="menu.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button> 
+      </div>
+      <div class="navbar-icon" fxLayout="row" fxLayoutGap="10px">
+        <button mat-icon-button routerLink="/app/dashboard" matTooltip="Home Page">
+          <mat-icon>home</mat-icon>
+        </button>
+        <button fxShow fxHide.lt-md mat-icon-button (click)="userDetailes.toggle()" matTooltip="Employee Info">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-sidenav-container>
+  <mat-sidenav #userDetailes mode="side" position="end">
+    <mat-nav-list style="width: 290px;padding: 20px;" fxLayout="column" fxLayoutGap="4%">
+      <div class="user-profile-header">
+        <p>Profile Info :-</p>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5%">
+        <div fxLayout="column" fxLayoutAlign="center center" class="profile-image">
+          <img src="{{imageUrl}}" (click)="OnClick()">
+          <div fxLayout="column" class="user-details-content">
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+              <p class="user-name">{{UserDetailes?.firstName}} {{UserDetailes?.lastName}}</p>
+              <div *ngIf="employeeGender !== 'Others'" class="user-gender">
+                <div *ngIf="employeeGender === 'Male';else female">
+                  <p>(He/Him)</p>
+                </div>
+                <ng-template #female>
+                  <p>(She/Her)</p>
+                </ng-template>
+              </div>
+            </div>
+            <p class="user-email">{{UserDetailes?.email}}</p>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="user-logout">
+            <p class="forget-password" routerLink="/forgetPassowrd">Forget Password ?</p>
+            <button mat-raised-button style="background-color:var(--submit);color:var(--buttonTextColor);" (click)="OnLogout()">
+                Logout
+            </button>
+        </div>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav #menu mode="side" position="start">
+    <mat-nav-list style="width: 200px">
+      <div *ngFor="let value of menuDetails;let i=index" >
+        <div (click)="onSelect(value)" [ngClass]="selectMenuIndex == value?.menuId ? 'menu-content-click' : 'menu-content-without-click'" class="menu-content"  fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <mat-icon class="menu-icon">{{value?.menuIconName}}</mat-icon>
+          <p class="menu-title">{{value?.menuTitle}}</p>
+        </div>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content style="height: 89vh;" ngClass.lt-md="mat-sidenav-content-data">
+    <div>
+      <router-outlet>
+      </router-outlet>
+    </div>
+  </mat-sidenav-content>
+  <!-- <mat-sidenav-content class="mat-sidenav-content-checking" >
+    <div>
+      <router-outlet>
+      </router-outlet>
+    </div>
+  </mat-sidenav-content> -->
+</mat-sidenav-container>
+
+<!-- Edit The User Image -->
+<ng-template #editProfile>
+  <div fxLayout="column">
+    <div class="dialog-heading" fxLayoutAlign="start center">
+      <p>Upload Image</p>
+    </div>
+    <div fxLayoutAlign="center center">
+      <img src="{{imageUrl}}" class="dialog-user-image" (click)="openFileExplorer()">
+      <input type="file" #fileInput (change)="handleFileInput($event)" class="dialog-user-upload-image">
+    </div>
+    <div fxLayoutAlign="end end" fxLayoutGap="2%" class="dialog-button">
+      <button mat-raised-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="primary">Save</button>
+    </div>
+  </div>
+</ng-template>
+
+

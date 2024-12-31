@@ -1,0 +1,21 @@
+.dialogWidth{
+  width: 500px;
+}
+
+.dialogHeader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+
+.dialogHeader h2{
+  margin: 0px;
+}
+
+.mdc-dialog__content>:last-child {
+  margin-bottom: 5px;
+}
+.mdc-dialog .mdc-dialog__content {
+  padding: 15px 24px 20px 24px;
+}

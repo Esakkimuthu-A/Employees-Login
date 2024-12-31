@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.color{
+  color: blue;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: white;
+}
+
+:root{
+  --color-primary:#3f51b5;
+  --active:#23c123;
+  --footer-icon-and-button-color:#f2740d;
+  --submit:#3f51b5;
+  --cancel:#f44336;
+  --buttonTextColor:white;
+  --textFontFamiliy:'Roboto Slab';
+  --textColor:#3f51b5;
+}
+
+.snackbar-success .mdc-snackbar__surface {
+  background-color: rgb(64, 182, 64) !important;
+}
+.snackbar-error .mdc-snackbar__surface {
+  background-color: rgb(206, 30, 30) !important;
+}
+.snackbar-warning .mdc-snackbar__surface {
+  background-color: rgb(182, 182, 31) !important;
+}
+.snackbar-info .mdc-snackbar__surface {
+  background-color: rgb(129, 189, 207) !important;
+}
+.snackbar-defalute .mdc-snackbar__surface {
+  background-color: rgb(155, 58, 79) !important;
+}

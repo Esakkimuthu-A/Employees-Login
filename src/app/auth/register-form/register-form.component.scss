@@ -1,0 +1,65 @@
+.form-container{
+ margin: 20px 0px;
+}
+
+.back-button{
+  margin-bottom: 10px;
+}
+
+.active-user{
+  height: 30px;
+  width: 70px;
+  background-color: var(--active);
+  color: white;
+  font-size: 15px;
+}
+
+.active-user p{
+  margin: 0px;
+}
+
+.selected-button-color{
+  color: white;
+  background-color: var(--color-primary);
+}
+
+mat-card{
+  padding: 30px 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.mat-card-user-details{
+  margin: 40px 0px;
+  padding: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-field-outer{
+  margin: 20px;
+  padding: 20px 20px 20px 10px;
+}
+
+.label{
+  font-size: 17px;
+  color: rgb(43, 41, 41);
+  font-weight: 400;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+.password-visibility{
+  padding: 2px;
+}
+
+.add-image{
+  color:  var(--color-primary);
+  font-size: 17px;
+  font-family: Time new Roam;
+  cursor: pointer;
+  padding-top: 15px;
+  margin: 8px 0px;
+}
+
+.user-photo-input{
+  font-size: 15px;
+}
