@@ -5,7 +5,6 @@ const EmpAdd = require('../models').employeecontact;
 const MaritalStatus =require('../models').maritalstatus;
 const Gender =require('../models').gender;
 const superbaseImage =require('../utils/image-upload');
-
 // const Contact =require('../models').employeecontact
 
 // const getEmployee = async function (req, res) {
@@ -149,3 +148,10 @@ const editEmployee=async function(req,res){
   if(EditEmployee) ReS(res,{EditEmployee});
 }
 module.exports.editEmployee=editEmployee;
+
+const getAllEmployeeCount =async function(req,res){
+  let [err, count] =await to(Employee.count());
+  if(err) ReE(res, err, 422);
+  if(count) ReS(res,{ count });
+}
+module.exports.getAllEmployeeCount=getAllEmployeeCount;

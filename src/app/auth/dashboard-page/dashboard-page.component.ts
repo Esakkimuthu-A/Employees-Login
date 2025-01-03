@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID,NgZone } from '@angular/core';
+import { EmployeeService } from 'src/app/shared/services/employee.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -12,11 +13,19 @@ export class DashboardPageComponent {
    * @type {boolean}
    */
   showScroll :boolean =false;
+  /**
+   * Variable used to display employee count.
+   */
+  employeeCount: any;
   
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
-    private ngZone: NgZone
+    private ngZone: NgZone,private EmplyeeService: EmployeeService
   ) {}
+
+  ngOnInit(){
+    this.Initial();
+  }
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -24,6 +33,14 @@ export class DashboardPageComponent {
         window.addEventListener('scroll', this.scrollEvent);
       });
     }
+  }
+
+  Initial(){
+    this.EmplyeeService.getEmployeeCount().subscribe((res:any)=>{
+      if(res?.count){
+        this.employeeCount=res?.count;
+      }
+    })
   }
 
   scrollEvent = (event: Event): void => {

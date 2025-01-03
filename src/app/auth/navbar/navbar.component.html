@@ -26,10 +26,10 @@
       </div>
       <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5%">
         <div fxLayout="column" fxLayoutAlign="center center" class="profile-image">
-          <img src="{{imageUrl}}" (click)="OnClick()">
+          <img [src]="userDetails?.addImage ? userDetails?.addImage : imageUrl" (click)="OnClick()">
           <div fxLayout="column" class="user-details-content">
             <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
-              <p class="user-name">{{UserDetailes?.firstName}} {{UserDetailes?.lastName}}</p>
+              <p class="user-name">{{userDetails?.firstName}} {{userDetails?.lastName}}</p>
               <div *ngIf="employeeGender !== 'Others'" class="user-gender">
                 <div *ngIf="employeeGender === 'Male';else female">
                   <p>(He/Him)</p>
@@ -39,7 +39,7 @@
                 </ng-template>
               </div>
             </div>
-            <p class="user-email">{{UserDetailes?.email}}</p>
+            <p class="user-email">{{userDetails?.email}}</p>
           </div>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-between center" class="user-logout">
@@ -81,8 +81,16 @@
     <div class="dialog-heading" fxLayoutAlign="start center">
       <p>Upload Image</p>
     </div>
-    <div fxLayoutAlign="center center">
-      <img src="{{imageUrl}}" class="dialog-user-image" (click)="openFileExplorer()">
+    <div fxLayout="column" style="align-items: center;">
+      <div *ngIf="uploadOnlyImage" class="upload-only-image">
+        <p>{{uploadOnlyImage}}</p>
+      </div>
+      <div *ngIf="!uploadImage">
+        <img [src]="userDetails?.addImage ? userDetails?.addImage : imageUrl" class="dialog-user-image" (click)="openFileExplorer()">
+      </div>
+      <div *ngIf="uploadImage">
+        <img [src]="uploadImage.file" alt="user-image" class="dialog-user-image">
+      </div>
       <input type="file" #fileInput (change)="handleFileInput($event)" class="dialog-user-upload-image">
     </div>
     <div fxLayoutAlign="end end" fxLayoutGap="2%" class="dialog-button">

@@ -15,5 +15,6 @@ router.get('/getRole',Controller.getRoll);
 router.get('/getMaritalstatus',Controller.getMaritalstatus);
 router.get('/getGender',Controller.getGender);
 router.get('/getAllEmployeeDetails',Controller.getAllEmployeeDetails);
+router.get('/getEmplotyeeCount',Controller.getAllEmployeeCount)
 
 module.exports = router;

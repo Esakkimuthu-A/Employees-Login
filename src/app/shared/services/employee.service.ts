@@ -68,4 +68,8 @@ export class EmployeeService {
   changePassword(password : any){
     return this.httpService.PostMethod('changePassword',password);
   }
+
+  getEmployeeCount(){
+      return this.httpService.GetMethod('getEmplotyeeCount');
+  }
 }

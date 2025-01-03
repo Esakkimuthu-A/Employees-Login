@@ -10,12 +10,14 @@ import { filter, mergeMap, of } from 'rxjs';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  UserDetailes: any;
+  userDetails: any;
+  uploadImage: any;
+  uploadOnlyImage: any;
   array: any;
   imageUrl: any;
   selectMenuIndex : any;
   employeeGender : any;
-  
+  employeeCount: any;
   menuDetails=[
     {"menuId":'1',"menuIconName":"person_outline","menuTitle":"My Info","menuNavigate":"registerForm"}
   ]
@@ -45,14 +47,14 @@ export class NavbarComponent {
   }
 
   processData(response : any){
-    this.UserDetailes = response;
+    this.userDetails = response;
     this.employeeGender =response?.gender?.gender;
   }
 
   OnClick() {
     this.dialog.open(this.editProfile, {
       width: "400px",
-      height: "320px"
+      height: "350px"
     });
   }
 
@@ -60,11 +62,26 @@ export class NavbarComponent {
     this.fileInput.nativeElement.click();
   }
 
-  handleFileInput(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    this.array = inputElement.files;
-    const files = this.array[0].name;
-    this.imageUrl = '/assets/' + files; 
+  handleFileInput(event: any) {
+    if(!event.target.files[0] || event.target.files[0].length == 0) {
+			this.uploadOnlyImage = 'You must select an image';
+			return;
+		}
+    var mimeType = event.target.files[0].type;
+		if (mimeType.match(/image\/*/) == null) {
+			this.uploadOnlyImage = "Only images are supported";
+			return;
+		}
+    var reader = new FileReader();
+		reader.readAsDataURL(event.target.files[0]);
+		reader.onload = (_event) => {
+			this.uploadOnlyImage = "";
+			this.uploadImage ={
+        file: reader.result as string,
+        fileName:event.target.files[0].name
+      } 
+      console.log("uploadImage",this.uploadImage);
+		}
   }
   
   onSelect(details :any): void{
