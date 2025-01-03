@@ -214,7 +214,7 @@
             <p>{{uploadOnlyImage}}</p>
           </div>
           <div *ngIf="uploadImage" class="image-content">
-            <img [src]="uploadImage" alt="user-image">
+            <img [src]="uploadImage.file" alt="user-image">
           </div>
           <input *ngIf="!uploadImage" type="file" #fileUpload class="user-photo-input" (change)="addProfilePhoto($event)">
         </div>

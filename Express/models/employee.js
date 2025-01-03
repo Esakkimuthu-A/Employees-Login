@@ -50,10 +50,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false
     },
-    // addImage: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false
-    // },
+    addImage: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     password: DataTypes.STRING
 
   });

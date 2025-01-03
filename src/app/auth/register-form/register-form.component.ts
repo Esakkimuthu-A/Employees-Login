@@ -138,6 +138,7 @@ export class RegisterFormComponent {
       password: new FormControl(this.UserDetailes && this.UserDetailes.password ? this.UserDetailes.password : null, Validators.required),
       confirmPassword: new FormControl(this.UserDetailes && this.UserDetailes.confirmPassword ? this.UserDetailes.confirmPassword : null, Validators.required),
       addImage: new FormControl(this.UserDetailes && this.UserDetailes.addImage ? this.UserDetailes.addImage : null, Validators.required),
+      isImage:new FormControl(this.UserDetailes && this.UserDetailes.isImage ? this.UserDetailes.isImage : null),
       contact: new FormArray([])
     })
     this.createArray();
@@ -213,7 +214,6 @@ export class RegisterFormComponent {
     }
     else {
       if (this.employeeform.valid) {
-        console.log("employeeform",this.employeeform);
         this.EmployeService.CreateEmployee(this.employeeform.value).subscribe((res: any) => {
           if (res) {
             this.employeeform.reset();
@@ -250,8 +250,12 @@ export class RegisterFormComponent {
 		reader.readAsDataURL(event.target.files[0]);
 		reader.onload = (_event) => {
 			this.uploadOnlyImage = "";
-			this.uploadImage = reader.result; 
-      this.employeeform.get('addImage')?.setValue(reader.result);
+			this.uploadImage ={
+        file: reader.result as string,
+        fileName:event.target.files[0].name
+      } 
+      this.employeeform.get('addImage')?.setValue(this.uploadImage);
+      this.employeeform.get('isImage')?.setValue(true);
 		}
   }
 

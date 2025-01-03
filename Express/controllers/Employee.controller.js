@@ -4,6 +4,8 @@ const Employee = require('../models').employee;
 const EmpAdd = require('../models').employeecontact;
 const MaritalStatus =require('../models').maritalstatus;
 const Gender =require('../models').gender;
+const superbaseImage =require('../utils/image-upload');
+
 // const Contact =require('../models').employeecontact
 
 // const getEmployee = async function (req, res) {
@@ -73,16 +75,24 @@ module.exports.getRoll = getRoll;
 const createEmployee = async function (req, res) {
   let body;
   body = req.body;
-  [err, addEmploye] = await to(Employee.create(body));
-  if (addEmploye) {
-    for (let i = 0; i < req.body.contact.length; i++) {
-      req.body.contact[i]['employeeId'] = addEmploye.dataValues.id;
-      [err, empData] = await to(EmpAdd.create(req.body.contact[i]));
-      if (err) return ReE(res, err, 422);
+  if(body.isImage){
+    const finalImage = await superbaseImage(body.addImage);
+    if(finalImage){
+      delete body.isImage;
+      body.addImage=finalImage;
+        [err, addEmploye] = await to(Employee.create(body));
+        if (addEmploye) {
+          for (let i = 0; i < req.body.contact.length; i++) {
+            req.body.contact[i]['employeeId'] = addEmploye.dataValues.id;
+            [err, empData] = await to(EmpAdd.create(req.body.contact[i]));
+          if (err) return ReE(res, err, 422);
+          }
+        }
+        if (err) ReE(res, err, 422);
+        if (addEmploye) ReS(res, addEmploye, 200);
     }
   }
-  if (err) ReE(res, err, 422);
-  if (addEmploye) ReS(res, addEmploye, 200);
+
 }
 module.exports.createEmployee = createEmployee;
 
