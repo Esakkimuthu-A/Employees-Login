@@ -36,6 +36,10 @@ export class RegisterFormComponent {
   uploadImage: any;
   uploadOnlyImage: any;
   documentData !:any[];
+  /**
+   * Variable used to handle page is loaded or not.
+   */
+  loader !:boolean;
 
   ngOnInit() {
     this.InitialLoading();
@@ -214,8 +218,10 @@ export class RegisterFormComponent {
     }
     else {
       if (this.employeeform.valid) {
+        this.loader=true;
         this.EmployeService.CreateEmployee(this.employeeform.value).subscribe((res: any) => {
           if (res) {
+            this.loader=false;
             this.employeeform.reset();
             this.SnackBar.openSnackBar({message:'Your account has been successfully created',main: SnackType.Success})
           }

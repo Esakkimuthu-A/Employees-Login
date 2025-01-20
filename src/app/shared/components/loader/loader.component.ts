@@ -5,8 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })
-export class LoaderComponent {
-  ngOnInit(){
-    console.log("Loader Components call");
-  }
-}
+export class LoaderComponent {}

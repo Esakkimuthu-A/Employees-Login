@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
+import { SnackBarService, SnackType } from 'src/app/shared/services/snack-bar.service';
 
 @Component({
   selector: 'app-login-form',
@@ -27,7 +28,7 @@ export class LoginFormComponent {
    * @param EmployeService to access the method from shared service
    * @param router to access route data
    */
-  constructor(private EmployeService:EmployeeService,private router: Router){
+  constructor(private EmployeService:EmployeeService,private router: Router,private SnackBar:SnackBarService){
   }
 
   /**
@@ -52,18 +53,18 @@ export class LoginFormComponent {
    */
   Login(){
     this.loader=true;
-    this.EmployeService.loginForm(this.loginForm.value).subscribe(res=>{
+    this.EmployeService.loginForm(this.loginForm.value).subscribe((res)=>{
+      this.loader=false;
       if (res && res['userId']) {
-        this.loader=false;
         this.router.navigate(['/app/dashboard']);
       }
       if(res.error){
-        this.loader=false;
         this.loginForm.get('email')?.setErrors({ invalidError: true });
         this.loginForm.get('password')?.setErrors({error:true});
       }
     },(err) =>{
       this.loader=false;
+      this.SnackBar.openSnackBar({message:'Something went wrong. Please try again.',main: SnackType.Error})
     })
   }
 }
